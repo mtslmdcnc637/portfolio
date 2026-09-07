@@ -123,6 +123,22 @@
       logo.addEventListener('focus', () => glitchTo(ALT));
       logo.addEventListener('blur', () => glitchTo(NAME));
     }
+
+    /* sem hover (celular/tablet): alterna o glitch a cada 5s */
+    if (matchMedia('(hover: none)').matches) {
+      let alt = false;
+      const flip = () => {
+        alt = !alt;
+        const target = alt ? ALT : NAME;
+        if (reducedMotion) render(target);
+        else glitchTo(target);
+      };
+      let timer = setInterval(flip, 5000);
+      doc.addEventListener('visibilitychange', () => {
+        clearInterval(timer);
+        if (!doc.hidden) timer = setInterval(flip, 5000);
+      });
+    }
   }
 
   /* ano automático */
