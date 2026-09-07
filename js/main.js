@@ -73,6 +73,58 @@
     setInterval(tick, 1000);
   }
 
+  /* logo: glitch + troca pra "O Automatizador" no hover */
+  const logo = $('.logo');
+  if (logo) {
+    const out = $('.logo-text', logo);
+    const NAME = 'mateus.';
+    const ALT = 'O Automatizador.'; // EDITE: o texto do glitch
+    const GLYPHS = '!-_\\/[]{}=+*^?#@%$~';
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const render = text => {
+      out.textContent = text.slice(0, -1);
+      const dot = doc.createElement('span');
+      dot.className = 'logo-dot';
+      dot.textContent = text.slice(-1);
+      out.append(dot);
+    };
+
+    let raf = null;
+    const glitchTo = target => {
+      cancelAnimationFrame(raf);
+      const from = out.textContent;
+      const dur = 560;
+      const t0 = performance.now();
+      logo.classList.add('is-glitching');
+      const step = now => {
+        const t = Math.min(1, (now - t0) / dur);
+        let s = '';
+        for (let i = 0; i < target.length; i++) {
+          if (i / target.length < t * 1.2 - 0.2) s += target[i];
+          else if (from[i] && Math.random() < 0.25) s += from[i];
+          else s += GLYPHS[(Math.random() * GLYPHS.length) | 0];
+        }
+        render(s);
+        if (t < 1) raf = requestAnimationFrame(step);
+        else { render(target); logo.classList.remove('is-glitching'); }
+      };
+      raf = requestAnimationFrame(step);
+    };
+
+    if (reducedMotion) {
+      logo.addEventListener('mouseenter', () => render(ALT));
+      logo.addEventListener('mouseleave', () => render(NAME));
+      logo.addEventListener('focus', () => render(ALT));
+      logo.addEventListener('blur', () => render(NAME));
+    } else {
+      logo.addEventListener('mouseenter', () => glitchTo(ALT));
+      logo.addEventListener('mouseleave', () => glitchTo(NAME));
+      logo.addEventListener('focus', () => glitchTo(ALT));
+      logo.addEventListener('blur', () => glitchTo(NAME));
+    }
+  }
+
   /* ano automático */
   const year = $('#ano');
   if (year) year.textContent = new Date().getFullYear();

@@ -104,8 +104,19 @@ body.menu-open .header{background:transparent;border-color:transparent;-webkit-b
   height:76px;padding-inline:var(--pad);
   display:flex;align-items:center;justify-content:space-between;gap:24px;
 }
-.logo{position:relative;z-index:110;font-family:var(--display);font-weight:700;font-size:1.3rem;letter-spacing:-.02em}
-.logo span{color:var(--accent)}
+.logo{position:relative;z-index:110;display:inline-block;font-family:var(--display);font-weight:700;font-size:1.3rem;letter-spacing:-.02em;white-space:nowrap}
+.logo-size{visibility:hidden}
+.logo-text{position:absolute;inset:0 auto 0 0;white-space:nowrap}
+.logo-dot{color:var(--accent)}
+.logo.is-glitching .logo-text{
+  text-shadow:2px 0 rgba(255,70,70,.8),-2px 0 rgba(90,220,255,.8);
+  animation:logo-shake .16s steps(2,end) infinite;
+}
+@keyframes logo-shake{
+  0%{transform:translate(0,0)}
+  50%{transform:translate(1.5px,-1.5px) skewX(-6deg)}
+  100%{transform:translate(-1.5px,1px) skewX(4deg)}
+}
 .nav{display:flex;align-items:center;gap:clamp(20px,3vw,40px)}
 .nav a{
   font-family:var(--mono);font-size:12px;
