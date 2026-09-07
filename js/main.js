@@ -63,6 +63,87 @@
   }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
   $$('.reveal').forEach(el => io.observe(el));
 
+  /* ---------- rolagem com inércia + efeitos de scroll ---------- */
+  const REDUCED_M = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const inertiaOn = matchMedia('(hover: hover) and (pointer: fine)').matches && !REDUCED_M;
+  const html = doc.documentElement;
+  const marqueeGroups = $$('.marquee-group');
+  const mediaImgs = $$('.media-frame img');
+  let targetY = scrollY, currentY = scrollY, lastIntent = 0, vel = 0;
+
+  if (inertiaOn) {
+    html.classList.add('smooth');
+
+    addEventListener('wheel', e => {
+      if (e.ctrlKey || doc.body.classList.contains('menu-open')) return;
+      e.preventDefault();
+      const dy = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+      targetY += dy;
+      lastIntent = performance.now();
+    }, { passive: false });
+
+    /* links internos deslizam com a mesma inércia */
+    $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const el = a.getAttribute('href').length > 1 && $(a.getAttribute('href'));
+      if (!el) return;
+      e.preventDefault();
+      history.replaceState(null, '', a.getAttribute('href'));
+      targetY = el.getBoundingClientRect().top + scrollY - 76;
+      lastIntent = performance.now();
+    }));
+  }
+
+  if (!REDUCED_M) {
+    const frame = () => {
+      if (inertiaOn) {
+        /* interferência externa (barra de rolagem, teclado): ressincroniza */
+        if (Math.abs(currentY - scrollY) > 2) { currentY = targetY = scrollY; }
+        const max = html.scrollHeight - innerHeight;
+        targetY = Math.max(0, Math.min(targetY, max));
+        const prev = currentY;
+        currentY += (targetY - currentY) * 0.095;
+        if (Math.abs(targetY - currentY) < 0.5) currentY = targetY;
+        if (Math.abs(currentY - scrollY) >= 0.5) scrollTo(0, currentY);
+        vel = currentY - prev;
+      } else {
+        const y = scrollY;
+        vel = y - (frame.lastY ?? y);
+        frame.lastY = y;
+      }
+
+      /* parallax das mídias */
+      const vh = innerHeight;
+      for (const img of mediaImgs) {
+        const r = img.parentElement.getBoundingClientRect();
+        if (r.bottom < -60 || r.top > vh + 60) continue;
+        const prog = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2);
+        img.style.setProperty('--py', (prog * -7).toFixed(2) + '%');
+      }
+
+      /* letreiro inclina com a velocidade */
+      if (marqueeGroups.length) {
+        const sk = Math.max(-6, Math.min(6, vel * 0.35));
+        for (const g of marqueeGroups) g.style.transform = `skewX(${sk.toFixed(2)}deg)`;
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  }
+
+  /* item do menu acende na seção ativa */
+  const navMap = new Map($$('.nav a[href^="#"]').map(a => [a.getAttribute('href').slice(1), a]));
+  const secIO = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      $$('.nav a').forEach(a => a.classList.remove('active'));
+      navMap.get(en.target.id)?.classList.add('active');
+    });
+  }, { rootMargin: '-35% 0px -60% 0px' });
+  ['sobre', 'servicos', 'projetos', 'contato'].forEach(id => {
+    const s = doc.getElementById(id);
+    if (s) secIO.observe(s);
+  });
+
   /* relógio do rodapé */
   const clock = $('#clock');
   if (clock) {

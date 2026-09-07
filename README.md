@@ -34,6 +34,7 @@ Push em `main` → a Vercel publica sozinha. Primeira vez:
 ```
 index.html      → todo o conteúdo (edite aqui)
 css/style.css   → todo o visual (cores nas variáveis do :root)
-js/main.js      → menu, acordeão, reveal, cursor, relógio
+js/main.js      → menu, acordeão, glitch do logo, rolagem com inércia,
+                  parallax, letreiro reativo, cursor, relógio
 assets/         → favicon e suas imagens
 ```
