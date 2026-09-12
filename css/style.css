@@ -299,7 +299,7 @@ body.menu-open{overflow:hidden}
   display:grid;grid-template-columns:repeat(12,1fr);
   gap:clamp(16px,2.4vw,28px);align-items:start;
 }
-.project{grid-column:span 7}
+.project{grid-column:span 7;display:block}
 .project:nth-child(even){grid-column:span 5;margin-top:clamp(40px,7vw,110px)}
 .project .project-media{aspect-ratio:16/10}
 .project:nth-child(even) .project-media{aspect-ratio:4/3.6}
