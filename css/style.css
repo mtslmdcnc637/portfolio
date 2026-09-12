@@ -260,6 +260,15 @@ body.menu-open{overflow:hidden}
   line-height:1.5;letter-spacing:-.01em;margin-bottom:24px;
 }
 .about-text>p:not(.about-lead){color:var(--dim);max-width:60ch}
+.about-text>p:not(.about-lead)+p:not(.about-lead){margin-top:14px}
+.glitch-inline{
+  color:var(--accent);cursor:default;
+  display:inline-block;white-space:nowrap;
+}
+.glitch-inline.is-glitching{
+  text-shadow:2px 0 rgba(255,70,70,.8),-2px 0 rgba(90,220,255,.8);
+  animation:logo-shake .16s steps(2,end) infinite;
+}
 .about-tools{
   display:flex;flex-wrap:wrap;gap:8px 0;margin-top:40px;
   font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);

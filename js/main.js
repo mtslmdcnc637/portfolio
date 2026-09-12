@@ -222,6 +222,45 @@
     }
   }
 
+  /* glitch inline no "o Automatizador" do Sobre */
+  const inlineGlitch = $('.glitch-inline');
+  if (inlineGlitch) {
+    const WORD = inlineGlitch.textContent;
+    const GLYPHS2 = '!-_\\/[]{}=+*^?#@%$~';
+    let rafI = null;
+    const playInline = () => {
+      cancelAnimationFrame(rafI);
+      const dur = 560, t0 = performance.now();
+      inlineGlitch.classList.add('is-glitching');
+      const step = now => {
+        const t = Math.min(1, (now - t0) / dur);
+        let s = '';
+        for (let i = 0; i < WORD.length; i++) {
+          if (i / WORD.length < t * 1.2 - 0.2) s += WORD[i];
+          else if (Math.random() < 0.25) s += WORD[i];
+          else s += GLYPHS2[(Math.random() * GLYPHS2.length) | 0];
+        }
+        inlineGlitch.textContent = s;
+        if (t < 1) rafI = requestAnimationFrame(step);
+        else { inlineGlitch.textContent = WORD; inlineGlitch.classList.remove('is-glitching'); }
+      };
+      rafI = requestAnimationFrame(step);
+    };
+    const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reducedI = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (canHover && !reducedI) {
+      inlineGlitch.addEventListener('mouseenter', playInline);
+    } else if (!reducedI) {
+      /* sem hover: executa uma vez quando o texto aparece na tela */
+      const ioInline = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { playInline(); ioInline.disconnect(); }
+        });
+      }, { threshold: .6 });
+      ioInline.observe(inlineGlitch);
+    }
+  }
+
   /* ano automático */
   const year = $('#ano');
   if (year) year.textContent = new Date().getFullYear();
