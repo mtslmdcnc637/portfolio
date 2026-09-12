@@ -199,7 +199,7 @@
         setMeio('whatsapp');
       } catch {
         status.classList.add('err');
-        status.textContent = 'Não consegui enviar agora — me chama direto: contato@mateus.dev ↗';
+        status.textContent = 'Não consegui enviar agora — tenta de novo em instantes.';
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Enviar mensagem';

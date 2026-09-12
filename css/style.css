@@ -133,7 +133,6 @@ body.menu-open .header{background:transparent;border-color:transparent;-webkit-b
 .nav a:hover::after{transform:scaleX(1);transform-origin:left}
 .nav a.active{color:var(--ink)}
 .nav a.active::after{transform:scaleX(1);transform-origin:left}
-.nav .nav-mail{display:none}
 .header-right{display:flex;align-items:center;gap:16px}
 
 .menu-toggle{
@@ -378,14 +377,6 @@ body.menu-open{overflow:hidden}
 .contact-title span{display:block}
 .ct-l2{margin-left:clamp(24px,8vw,140px)}
 .ct-l3{margin-left:clamp(48px,16vw,280px);color:var(--accent)}
-.contact-mail{
-  display:inline-flex;align-items:center;gap:10px;
-  margin-top:clamp(32px,5vw,52px);
-  font-family:var(--mono);font-size:clamp(.95rem,1.6vw,1.15rem);letter-spacing:.04em;
-  border-bottom:1px solid var(--accent);padding-bottom:8px;
-  transition:color .3s;
-}
-.contact-mail:hover{color:var(--accent)}
 .socials{
   display:flex;flex-wrap:wrap;gap:14px clamp(20px,3.5vw,40px);
   margin-top:clamp(48px,7vw,80px);border-top:1px solid var(--line);padding-top:26px;
@@ -400,6 +391,7 @@ body.menu-open{overflow:hidden}
 .contact-form{
   position:relative;
   max-width:920px;
+  margin-inline:auto;
   border:1px solid var(--line);border-radius:4px;
   background:linear-gradient(160deg,#1b1b17,#131311);
   padding:clamp(26px,3.4vw,52px);
@@ -470,18 +462,11 @@ body.menu-open{overflow:hidden}
   }
   .nav a::after{display:none}
   .nav a:hover{color:var(--accent)}
-  .nav .nav-mail{
-    display:inline-block;margin-top:22px;
-    font-family:var(--mono);font-size:.95rem;letter-spacing:.06em;
-    color:var(--accent);text-transform:none;
-  }
 
   .hero-foot{flex-direction:column;align-items:flex-start}
   .about-grid{grid-template-columns:1fr}
   .about-media .media-frame{max-width:440px}
-  .contact-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
-  .contact-mail{margin-top:clamp(36px,6vw,52px)}
   .project,.project:nth-child(even){grid-column:span 12;margin-top:0}
   .project .project-media,.project:nth-child(even) .project-media{aspect-ratio:16/10}
   .project-text .pt-body,.project:nth-child(even).project-text .pt-body{aspect-ratio:auto;min-height:0}
