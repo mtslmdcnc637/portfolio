@@ -368,13 +368,13 @@ body.menu-open{overflow:hidden}
 
 /* ---------- contato ---------- */
 .contact{max-width:var(--max);margin-inline:auto;padding:clamp(96px,13vw,180px) var(--pad) clamp(72px,9vw,120px)}
-.contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,110px);align-items:start}
-.contact .section-index{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--accent)}
 .contact-title{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(2.2rem,8.4vw,7.2rem);
+  font-size:clamp(2.2rem,7vw,5.8rem);
   line-height:1.04;letter-spacing:-.03em;margin-top:22px;
+  margin-bottom:clamp(40px,6vw,72px);
 }
+.contact .section-index{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--accent)}
 .contact-title span{display:block}
 .ct-l2{margin-left:clamp(24px,8vw,140px)}
 .ct-l3{margin-left:clamp(48px,16vw,280px);color:var(--accent)}
@@ -399,23 +399,25 @@ body.menu-open{overflow:hidden}
 /* ---------- formulário de contato ---------- */
 .contact-form{
   position:relative;
+  max-width:920px;
   border:1px solid var(--line);border-radius:4px;
   background:linear-gradient(160deg,#1b1b17,#131311);
-  padding:clamp(24px,3vw,44px);
-  display:flex;flex-direction:column;gap:22px;
+  padding:clamp(26px,3.4vw,52px);
+  display:flex;flex-direction:column;gap:24px;
   scroll-margin-top:110px;
 }
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 .field{display:flex;flex-direction:column;gap:10px}
 .field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
 .field input,.field textarea{
   background:rgba(234,231,223,.03);
   border:1px solid var(--line);border-radius:4px;
-  color:var(--ink);font:inherit;padding:14px 16px;
+  color:var(--ink);font:inherit;padding:16px 18px;
   transition:border-color .3s,background .3s;
 }
 .field input::placeholder,.field textarea::placeholder{color:rgba(150,147,138,.55)}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:rgba(234,231,223,.05)}
-.field textarea{resize:vertical;min-height:130px}
+.field textarea{resize:vertical;min-height:160px}
 .meio-toggle{display:flex;gap:10px}
 .meio-btn{
   font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
@@ -478,6 +480,8 @@ body.menu-open{overflow:hidden}
   .about-grid{grid-template-columns:1fr}
   .about-media .media-frame{max-width:440px}
   .contact-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .contact-mail{margin-top:clamp(36px,6vw,52px)}
   .project,.project:nth-child(even){grid-column:span 12;margin-top:0}
   .project .project-media,.project:nth-child(even) .project-media{aspect-ratio:16/10}
   .project-text .pt-body,.project:nth-child(even).project-text .pt-body{aspect-ratio:auto;min-height:0}

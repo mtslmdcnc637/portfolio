@@ -339,26 +339,15 @@
     </section>
 
     <section class="contact" id="contato">
-      <div class="contact-grid">
-        <div class="contact-left">
-          <span class="section-index reveal">( 04 )</span>
-          <h2 class="contact-title reveal">
-            <span class="ct-l1">Tem um projeto</span>
-            <span class="ct-l2">na cabeça?</span>
-            <span class="ct-l3">Me chama.</span>
-          </h2>
-          <!-- EDITE: seu e-mail real -->
-          <a class="contact-mail reveal" href="mailto:contato@mateus.dev">contato@mateus.dev ↗</a>
-          <!-- EDITE: coloque os links reais das suas redes -->
-          <ul class="socials reveal">
-            <li><a href="#" target="_blank" rel="noopener">Instagram ↗</a></li>
-            <li><a href="https://github.com/mtslmdcnc637" target="_blank" rel="noopener">GitHub ↗</a></li>
-            <li><a href="#" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-            <li><a href="#" target="_blank" rel="noopener">WhatsApp ↗</a></li>
-          </ul>
-        </div>
-        <form class="contact-form reveal" id="form-contato" novalidate>
-          <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <span class="section-index reveal">( 04 )</span>
+      <h2 class="contact-title reveal">
+        <span class="ct-l1">Tem um projeto</span>
+        <span class="ct-l2">na cabeça?</span>
+        <span class="ct-l3">Me chama.</span>
+      </h2>
+      <form class="contact-form reveal" id="form-contato" novalidate>
+        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-row">
           <div class="field">
             <label for="f-nome">Seu nome</label>
             <input id="f-nome" name="nome" type="text" maxlength="80" required placeholder="Como te chamo?">
@@ -371,14 +360,23 @@
             </div>
             <input id="f-contato" name="contato" type="text" maxlength="120" required inputmode="tel" placeholder="+55 (11) 9 9999-9999">
           </div>
-          <div class="field">
-            <label for="f-msg">O projeto</label>
-            <textarea id="f-msg" name="mensagem" rows="5" maxlength="2000" required placeholder="Me conta o que você quer desenvolver..."></textarea>
-          </div>
-          <button class="btn form-submit" type="submit">Enviar mensagem</button>
-          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
+        </div>
+        <div class="field">
+          <label for="f-msg">O projeto</label>
+          <textarea id="f-msg" name="mensagem" rows="6" maxlength="2000" required placeholder="Me conta o que você quer desenvolver..."></textarea>
+        </div>
+        <button class="btn form-submit" type="submit">Enviar mensagem</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+      <!-- EDITE: seu e-mail real -->
+      <a class="contact-mail reveal" href="mailto:contato@mateus.dev">contato@mateus.dev ↗</a>
+      <!-- EDITE: coloque os links reais das suas redes -->
+      <ul class="socials reveal">
+        <li><a href="#" target="_blank" rel="noopener">Instagram ↗</a></li>
+        <li><a href="https://github.com/mtslmdcnc637" target="_blank" rel="noopener">GitHub ↗</a></li>
+        <li><a href="#" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="#" target="_blank" rel="noopener">WhatsApp ↗</a></li>
+      </ul>
     </section>
 
   </main>
