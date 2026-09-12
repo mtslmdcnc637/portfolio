@@ -144,6 +144,69 @@
     if (s) secIO.observe(s);
   });
 
+  /* formulário de contato → Telegram (via /api/contact) */
+  const form = $('#form-contato');
+  if (form) {
+    const contatoInput = $('#f-contato');
+    const status = $('#form-status');
+    const submitBtn = $('.form-submit', form);
+    let meio = 'whatsapp';
+
+    const setMeio = m => {
+      meio = m;
+      $$('.meio-btn', form).forEach(btn => {
+        const on = btn.dataset.meio === m;
+        btn.classList.toggle('is-on', on);
+        btn.setAttribute('aria-pressed', String(on));
+      });
+      contatoInput.type = m === 'email' ? 'email' : 'text';
+      contatoInput.inputMode = m === 'whatsapp' ? 'tel' : 'email';
+      contatoInput.placeholder = m === 'whatsapp' ? '+55 (11) 9 9999-9999' : 'seu@email.com';
+    };
+    $$('.meio-btn', form).forEach(btn => btn.addEventListener('click', () => setMeio(btn.dataset.meio)));
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (form.website.value) return; /* honeypot: bot */
+      const nome = form.nome.value.trim();
+      const contato = contatoInput.value.trim();
+      const mensagem = form.mensagem.value.trim();
+      const contatoOk = meio === 'email'
+        ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contato)
+        : contato.replace(/\D/g, '').length >= 10;
+
+      status.className = 'form-status';
+      if (!nome || !contatoOk || mensagem.length < 5) {
+        status.classList.add('err');
+        status.textContent = nome && mensagem.length >= 5
+          ? 'Confere o ' + (meio === 'email' ? 'e-mail' : 'número de WhatsApp') + ' — parece incompleto.'
+          : 'Preenche nome, meio de contato e a mensagem do projeto.';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando…';
+      try {
+        const r = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nome, meio, contato, mensagem, website: form.website.value }),
+        });
+        if (!r.ok) throw new Error('api');
+        status.classList.add('ok');
+        status.textContent = 'Recebido! Vou te responder em breve.';
+        form.reset();
+        setMeio('whatsapp');
+      } catch {
+        status.classList.add('err');
+        status.textContent = 'Não consegui enviar agora — me chama direto: contato@mateus.dev ↗';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar mensagem';
+      }
+    });
+  }
+
   /* relógio do rodapé */
   const clock = $('#clock');
   if (clock) {

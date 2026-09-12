@@ -333,6 +333,8 @@ body.menu-open{overflow:hidden}
   transition:color .3s;
 }
 .project:hover h3{color:var(--accent)}
+.project-media{transition:transform .45s cubic-bezier(.2,.65,.2,1)}
+.project:hover .project-media{transform:translateY(-4px)}
 .project-year{font-family:var(--mono);font-size:11px;color:var(--dim);padding-top:4px;white-space:nowrap}
 .project-desc{margin-top:10px;max-width:58ch;color:var(--dim);font-size:.92rem;line-height:1.55}
 .project-desc strong{color:var(--ink);font-weight:500}
@@ -366,6 +368,7 @@ body.menu-open{overflow:hidden}
 
 /* ---------- contato ---------- */
 .contact{max-width:var(--max);margin-inline:auto;padding:clamp(96px,13vw,180px) var(--pad) clamp(72px,9vw,120px)}
+.contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,6vw,110px);align-items:start}
 .contact .section-index{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--accent)}
 .contact-title{
   font-family:var(--display);font-weight:800;
@@ -392,6 +395,42 @@ body.menu-open{overflow:hidden}
   transition:color .3s;
 }
 .socials a:hover{color:var(--accent)}
+
+/* ---------- formulário de contato ---------- */
+.contact-form{
+  position:relative;
+  border:1px solid var(--line);border-radius:4px;
+  background:linear-gradient(160deg,#1b1b17,#131311);
+  padding:clamp(24px,3vw,44px);
+  display:flex;flex-direction:column;gap:22px;
+  scroll-margin-top:110px;
+}
+.field{display:flex;flex-direction:column;gap:10px}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.field input,.field textarea{
+  background:rgba(234,231,223,.03);
+  border:1px solid var(--line);border-radius:4px;
+  color:var(--ink);font:inherit;padding:14px 16px;
+  transition:border-color .3s,background .3s;
+}
+.field input::placeholder,.field textarea::placeholder{color:rgba(150,147,138,.55)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:rgba(234,231,223,.05)}
+.field textarea{resize:vertical;min-height:130px}
+.meio-toggle{display:flex;gap:10px}
+.meio-btn{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:10px 20px;border-radius:999px;
+  border:1px solid var(--line);color:var(--dim);
+  transition:background .3s,color .3s,border-color .3s;
+}
+.meio-btn:hover{color:var(--ink);border-color:rgba(234,231,223,.35)}
+.meio-btn.is-on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.form-submit{justify-content:center;width:100%}
+.form-submit:disabled{opacity:.55;cursor:wait}
+.form-status{font-family:var(--mono);font-size:12px;letter-spacing:.04em;line-height:1.6;color:var(--dim);min-height:1.2em}
+.form-status.ok{color:var(--accent)}
+.form-status.err{color:#ff7a7a}
+.hp-field{position:absolute!important;left:-9999px!important;opacity:0;height:0;width:0}
 
 /* ---------- rodapé ---------- */
 .footer{border-top:1px solid var(--line);padding:24px var(--pad) 34px}
@@ -438,6 +477,7 @@ body.menu-open{overflow:hidden}
   .hero-foot{flex-direction:column;align-items:flex-start}
   .about-grid{grid-template-columns:1fr}
   .about-media .media-frame{max-width:440px}
+  .contact-grid{grid-template-columns:1fr}
   .project,.project:nth-child(even){grid-column:span 12;margin-top:0}
   .project .project-media,.project:nth-child(even) .project-media{aspect-ratio:16/10}
   .project-text .pt-body,.project:nth-child(even).project-text .pt-body{aspect-ratio:auto;min-height:0}
