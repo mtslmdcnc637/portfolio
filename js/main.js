@@ -207,6 +207,18 @@
     });
   }
 
+  /* showreel: vídeos tocam só quando visíveis (economia de dados/bateria) */
+  const reelVideos = $$('.reel-track video');
+  if (reelVideos.length && 'IntersectionObserver' in window) {
+    const vio = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) en.target.play().catch(() => {});
+        else en.target.pause();
+      });
+    }, { threshold: .3 });
+    reelVideos.forEach(v => vio.observe(v));
+  }
+
   /* relógio do rodapé */
   const clock = $('#clock');
   if (clock) {

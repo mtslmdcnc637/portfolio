@@ -361,6 +361,26 @@ body.menu-open{overflow:hidden}
 .pt-desc strong{color:var(--ink);font-weight:500}
 .project-text .pt-body .tags{padding:0}
 .project-text .pt-body .wa-badge{top:18px;right:18px;left:auto}
+
+/* ---------- showreel de vídeos com IA ---------- */
+.project.project-reel{grid-column:span 12;margin-top:0}
+.reel-frame{
+  border:1px solid var(--line);border-radius:4px;
+  background:linear-gradient(160deg,#1b1b17,#131311);
+  padding:clamp(16px,2vw,28px);
+}
+.reel-track{
+  display:flex;gap:14px;justify-content:center;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;
+}
+.reel-track::-webkit-scrollbar{display:none}
+.reel-track video{
+  height:clamp(280px,30vw,430px);width:auto;
+  border-radius:4px;background:#000;
+  scroll-snap-align:center;
+  flex:0 0 auto;
+}
 .projects-more{margin-top:clamp(48px,7vw,88px);color:var(--dim);font-size:.95rem}
 .projects-more a{color:var(--ink);border-bottom:1px solid var(--accent);padding-bottom:2px;transition:color .3s}
 .projects-more a:hover{color:var(--accent)}
@@ -470,6 +490,7 @@ body.menu-open{overflow:hidden}
   .project,.project:nth-child(even){grid-column:span 12;margin-top:0}
   .project .project-media,.project:nth-child(even) .project-media{aspect-ratio:16/10}
   .project-text .pt-body,.project:nth-child(even).project-text .pt-body{aspect-ratio:auto;min-height:0}
+  .reel-track{justify-content:flex-start}
   .service-head{grid-template-columns:44px 1fr auto}
   .service-body p{padding-left:0}
   .tags{padding-left:0}
