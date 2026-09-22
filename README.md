@@ -1,20 +1,19 @@
 # Portfólio
 
-Site estático (HTML + CSS + JS puro, sem build). Design dark editorial com acento verde-limão.
+Site estático (HTML + CSS + JS puro, sem build). Design dark editorial com acento verde-limão, interações suaves e layout responsivo.
 
 ## Editar o conteúdo
 
-Tudo está no `index.html` — procure pelos comentários `<!-- EDITE -->`:
+O conteúdo está no `index.html`: apresentação, serviços, projetos, links e formulário. O visual fica em `css/style.css` e as interações em `js/main.js`.
 
-- **Nome**: usei "Mateus" como placeholder. Busque e substitua `Mateus` / `mateus` pelo seu nome.
-- **E-mail**: `contato@mateus.dev` (aparece 3x: menu mobile, contato e mailto).
-- **Redes sociais**: seção `#contato`, links com `href="#"` — coloque as URLs reais.
-- **Projetos**: seção `#projetos`. Para usar suas imagens, substitua os arquivos `assets/projeto-1.jpg` … `assets/projeto-6.jpg` (e `assets/foto-perfil.jpg`) pelas suas — mantendo os mesmos nomes, não precisa mexer no HTML. As imagens atuais são placeholders abstratos gerados por script e ficam em preto e branco até o hover — proposital.
-- **Textos**: sobre, serviços e rodapé estão direto no HTML.
+- **Retrato e screenshots**: ficam em `assets/`.
+- **Vídeos do showreel**: ficam em `assets/videos/`.
+- **Contato**: `api/contact.js` recebe o formulário e envia a mensagem ao Telegram pelas variáveis de ambiente da Vercel.
+- **SEO/social**: título, descrição e Open Graph ficam no `<head>` de `index.html`.
 
 ## Rodar local
 
-Abra o `index.html` no navegador, ou:
+Sirva a pasta com qualquer servidor estático. Exemplo:
 
 ```bash
 npx serve .

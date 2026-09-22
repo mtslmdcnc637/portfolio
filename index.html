@@ -14,6 +14,7 @@
   <meta property="og:image:width" content="960">
   <meta property="og:image:height" content="1200">
   <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://oautomatizador.site/">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +23,9 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
   <div class="noise" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span></span></div>
 
   <header class="header">
     <div class="header-inner">
@@ -46,24 +49,32 @@
     </div>
   </header>
 
-  <main id="topo">
+  <main id="conteudo">
 
-    <section class="hero">
-      <p class="hero-label">✳&nbsp;&nbsp;disponível para novos projetos</p>
+    <section class="hero" id="topo">
+      <div class="hero-top">
+        <p class="hero-label"><span class="status-dot" aria-hidden="true"></span> disponível para novos projetos</p>
+        <p class="hero-role">Creative technologist · Brasil</p>
+      </div>
       <h1 class="hero-title">
         <span class="line"><span>Imagem <em class="amp">&amp;</em> vídeo,</span></span>
         <span class="line line-b"><span>código <em class="amp">&amp;</em> IA.</span></span>
       </h1>
       <div class="hero-foot">
-        <p class="hero-sub">Criação de imagens e vídeos com IA, edição, programação e automação — tudo em um só lugar, com acabamento de quem gosta do que faz.</p>
+        <div class="hero-copy">
+          <span class="hero-kicker">ideias que viram experiências</span>
+          <p class="hero-sub">Uno direção visual, tecnologia e inteligência artificial para criar trabalhos que chamam atenção <strong>e funcionam de verdade.</strong></p>
+        </div>
         <div class="hero-cta">
-          <a class="btn" href="#projetos">Ver projetos</a>
-          <a class="btn btn-ghost" href="#contato">Falar comigo</a>
+          <a class="btn" href="#projetos">Ver projetos <span aria-hidden="true">↘</span></a>
+          <a class="btn btn-ghost" href="#contato">Iniciar projeto <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <div class="hero-meta">
         <span>role para explorar ↓</span>
-        <span>Brasil · atendo remoto</span>
+        <ul aria-label="Áreas de atuação">
+          <li>Direção</li><li>Criação</li><li>Automação</li>
+        </ul>
       </div>
     </section>
 
@@ -78,6 +89,24 @@
       </div>
     </div>
 
+    <section class="value-strip" aria-label="Diferenciais">
+      <article class="value-card reveal">
+        <span>01 / visão</span>
+        <h2>Visual com intenção.</h2>
+        <p>Estética forte, narrativa clara e cada detalhe trabalhando a favor da ideia.</p>
+      </article>
+      <article class="value-card reveal">
+        <span>02 / execução</span>
+        <h2>Do conceito ao deploy.</h2>
+        <p>Um único ponto de contato para pensar, criar, construir e colocar no ar.</p>
+      </article>
+      <article class="value-card reveal">
+        <span>03 / tecnologia</span>
+        <h2>IA onde faz sentido.</h2>
+        <p>Ferramentas novas com critério humano para ganhar escala sem perder qualidade.</p>
+      </article>
+    </section>
+
     <section class="section" id="sobre">
       <div class="section-head reveal">
         <span class="section-index">( 01 )</span>
@@ -88,7 +117,7 @@
           <div class="media-frame">
             <!-- foto: assets/foto-perfil.jpg (960x1200, 4:5) — pra trocar, substitua o arquivo mantendo o nome -->
             <img src="assets/foto-perfil.jpg" alt="Retrato de Mateus" loading="lazy" onerror="this.style.display='none'">
-            <span class="media-ph">sua foto aqui</span>
+            <span class="portrait-mark" aria-hidden="true">M / 26</span>
           </div>
           <figcaption>eu, entre um render e outro</figcaption>
         </figure>
@@ -96,6 +125,11 @@
           <p class="about-lead reveal">Sou o Mateus — ou <span class="glitch-inline">o Automatizador</span>, pra quem me acompanha. Venho de trás: comecei na programação em 2012, estudando PHP, e lembro até hoje do meu primeiro projeto — um Facebook de piadas. Desde então, nunca parei de estudar.</p>
           <p class="reveal">Há uns 10 anos, comecei a editar vídeo pra alguns YouTubers. Em 2024, me aprofundei em automação com n8n e Typebot: fiz minhas primeiras entregas profissionais no fim daquele ano e, desde então, sigo me dedicando a tirar o máximo dessas áreas.</p>
           <p class="reveal">Gosto de prazo respeitado, comunicação direta e acabamento de verdade — nada de “quase pronto”. Se uma automação pode devolver horas do seu time, melhor ainda.</p>
+          <dl class="about-facts reveal">
+            <div><dt>2012</dt><dd>começo no código</dd></div>
+            <div><dt>10+</dt><dd>anos com vídeo</dd></div>
+            <div><dt>BR</dt><dd>trabalho remoto</dd></div>
+          </dl>
           <ul class="about-tools reveal" aria-label="Ferramentas">
             <li>Midjourney</li><li>Runway</li><li>ComfyUI</li><li>Photoshop</li><li>Premiere</li><li>After Effects</li><li>Python</li><li>JavaScript</li><li>n8n</li><li>OpenAI API</li>
           </ul>
@@ -184,8 +218,6 @@
         <h2>Projetos selecionados</h2>
       </div>
       <div class="project-grid">
-        <!-- EDITE: troque as imagens (picsum) pelas suas — salve em assets/ e troque o src -->
-
         <a class="project reveal" href="https://mrcine-lp3.vercel.app" target="_blank" rel="noopener">
           <div class="project-media media-frame">
             <img src="assets/lp-mrcine-lp3.jpg" alt="Landing page do MrCine Pro" loading="lazy">
@@ -328,7 +360,7 @@
           <div class="pt-body">
             <span class="pt-cat">Edição de imagem · o que eu entrego</span>
             <h3>Pacote de posts p/ Instagram</h3>
-            <p class="pt-desc">Pacote mensal de conteúdo: tratamento das imagens, montagem de carrosséis e padronização do feed no identidade visual da marca.</p>
+            <p class="pt-desc">Pacote mensal de conteúdo: tratamento das imagens, montagem de carrosséis e padronização do feed na identidade visual da marca.</p>
             <ul class="tags"><li>Photoshop</li><li>Lightroom</li><li>Carrossel</li><li>Identidade visual</li></ul>
           </div>
         </article>
@@ -347,12 +379,15 @@
     </section>
 
     <section class="contact" id="contato">
-      <span class="section-index reveal">( 04 )</span>
-      <h2 class="contact-title reveal">
-        <span class="ct-l1">Tem algum</span>
-        <span class="ct-l2">projeto em mente?</span>
-        <span class="ct-l3">Me chama.</span>
-      </h2>
+      <div class="contact-intro">
+        <span class="section-index reveal">( 04 )</span>
+        <p class="contact-note reveal">Conte o que você quer tirar do papel. Eu retorno com perguntas, possibilidades e um próximo passo claro.</p>
+        <h2 class="contact-title reveal">
+          <span class="ct-l1">Vamos criar</span>
+          <span class="ct-l2">algo que</span>
+          <span class="ct-l3">marca?</span>
+        </h2>
+      </div>
       <form class="contact-form reveal" id="form-contato" novalidate>
         <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-row">
@@ -373,10 +408,9 @@
           <label for="f-msg">O projeto</label>
           <textarea id="f-msg" name="mensagem" rows="6" maxlength="2000" required placeholder="Me conta o que você quer desenvolver..."></textarea>
         </div>
-        <button class="btn form-submit" type="submit">Enviar mensagem</button>
+        <button class="btn form-submit" type="submit">Enviar mensagem <span aria-hidden="true">↗</span></button>
         <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
-      <!-- rede real: GitHub. Adicione as outras quando quiser -->
       <ul class="socials reveal">
         <li><a href="https://github.com/mtslmdcnc637" target="_blank" rel="noopener">GitHub ↗</a></li>
       </ul>

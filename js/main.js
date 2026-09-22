@@ -5,7 +5,14 @@
 
   /* header ganha fundo ao rolar */
   const header = $('.header');
-  const onScroll = () => header.classList.toggle('is-scrolled', scrollY > 24);
+  const progress = $('.scroll-progress span');
+  const onScroll = () => {
+    header.classList.toggle('is-scrolled', scrollY > 24);
+    if (progress) {
+      const max = doc.documentElement.scrollHeight - innerHeight;
+      progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+    }
+  };
   onScroll();
   addEventListener('scroll', onScroll, { passive: true });
 
